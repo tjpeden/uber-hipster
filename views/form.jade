@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  section
+    h2 New
+    form#addForm(action='/', method=method)
+      label
+        | Title
+        br
+        input(type='text', name='post[title]', style='width:300px;')
+      br
+      label
+        | Description
+        br
+        textarea(rows='15', cols='63', name='post[description]')
+      br
+      input.button(type='submit', value='Save')

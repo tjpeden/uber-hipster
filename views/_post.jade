@@ -1,0 +1,7 @@
+li(data-id=post._id.toHexString())
+  a.delete(href='/#{post._id.toHexString()}', data-remote, data-confirm="Are you sure?", data-method='delete', data-type='html')
+    img(src='/images/51.png')
+  a.edit(href='/#{post._id.toHexString()}/edit')
+    img(src='/images/39.png')
+  a.show(href='/#{post._id.toHexString()}.json', data-remote)
+    | #{post.title}

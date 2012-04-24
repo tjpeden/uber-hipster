@@ -1,0 +1,80 @@
+
+/*
+ * GET home page.
+ */
+
+var Mongoose = require('mongoose');
+
+require('../models/post');
+
+var Post = Mongoose.model('Post');
+
+module.exports = {
+  index: function(req, res) {
+    Post.ordered(function(error, posts) {
+      res.render('index', { posts: posts });
+    });
+  },
+  new: function(req, res) {
+    var post = new Post();
+    res.render('new', { post: post });
+  },
+  create: function(req, res) {
+    var post = new Post();
+    post.update(req.body.post);
+    res.redirect('home');
+  },
+  show: function(req, res) {
+    Post.findById(req.params.id, function(error, post) {
+      if(error) {
+        console.log(req.url);
+        console.log(error);
+      } else {
+        switch(req.format) {
+        case 'json':
+          res.send(post);
+          break;
+        default:
+          res.send(404); // Perhaps I shall implement this later
+          break;
+        }
+      }
+    });
+  },
+  edit: function(req, res) {
+    Post.findById(req.params.id, function(error, post) {
+      if(error) {
+        console.log(error);
+        res.redirect('home');
+      } else {
+        res.render('edit', { post: post });
+      }
+    });
+  },
+  update: function(req, res) {
+    Post.findById(req.params.id, function(error, post) {
+      if(error) {
+        console.log(error);
+      } else {
+        post.update(req.body.post);
+      }
+      res.redirect('home');
+    });
+  },
+  destroy: function(req, res) {
+    Post.findById(req.params.id, function(error, post) {
+      if(error) {
+        console.log(error);
+      } else {
+        post.remove(function(error) {
+          if(error) {
+            console.log(error);
+          }
+          Post.ordered(function(error, posts) {
+            res.partial('_post', posts);
+          });
+        });
+      }
+    });
+  }
+};

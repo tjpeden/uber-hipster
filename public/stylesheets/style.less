@@ -1,0 +1,154 @@
+@import 'bootstrap';
+
+@light-green: #C6E7EC;
+@dark-blue: #043042;
+@darker: rgba(0, 0, 0, 0.0975);
+
+.white-box {
+  background-color: @white;
+  padding: 6px;
+  border: 1px solid @dark-blue;
+  .border-radius(5px);
+  .box-shadow();
+}
+
+body {
+  background: @light-green;
+  color: @dark-blue;
+  font: 16px Helvetica, Arial, sans-serif;
+  line-height: 1.6em;
+  margin: auto;
+  width: 590px;
+}
+
+a {
+  @color: #14173a;
+  color: @color;
+  font-weight: bold;
+  text-decoration: none;
+  
+  &:hover {
+    border-bottom: 1px @color dashed;
+  }
+}
+
+header h1 {
+  cursor: pointer;
+  font: 144px Georgia;
+  font-weight: bolder;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-shadow: #f3f3f3 2px 2px 0px;
+}
+
+nav {
+  background-color: @darker;
+  font-size: 90%;
+  padding: 0px 15px 0px 0px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  height: 110px;
+  max-width: 285px;
+  overflow: hidden;
+  .border-radius(5px);
+  
+  h2 {
+    text-align: center;
+    
+    &:after {
+      content: '←';
+      margin-left: 5px;
+    }
+  }
+  
+  &:hover {
+    height: auto;
+    overflow: visible;
+    
+    h2:after {
+      -webkit-transition: all 2s ease-in-out;
+      -moz-transition: all 2s ease-in-out;
+      -o-transition: all 2s ease-in-out;
+      -ms-transition: all 2s ease-in-out;
+      transition: all 2s ease-in-out;
+      
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 30px;
+    
+    li a {
+      margin-right: 10px;
+      
+      img {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+  
+  a.button {
+    text-align: center;
+    margin: 10px;
+  }
+}
+
+article h2 {
+  border-bottom: 2px solid #505050;
+  padding-bottom: 5px;
+}
+
+section {
+  background-color: @darker;
+  margin-bottom: 40px;
+  padding: 10px 30px 10px 30px;
+  .border-radius(5px);
+}
+
+a.button, button, input[type="submit"] {
+  border: none;
+  .button(@white, @dark-blue);
+}
+
+input:not([type="submit"]), textarea {
+  .white-box();
+}
+
+input[type="text"] {
+  margin: 10px auto;
+}
+
+textarea {
+  width: 520px;
+  height: 200px;
+  margin: 10px auto;
+}
+
+#msg {
+  display: none;
+  text-align: center;
+  .white-box();
+}
+
+.powered {
+  width: 50%;
+  margin: 5px auto;
+  opacity: 0.25;
+  text-align: center;
+  
+  &:hover {
+    opacity: 1.0;
+  }
+}
+
+.reflect {
+  .white-box();
+}
