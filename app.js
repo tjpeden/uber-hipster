@@ -38,9 +38,15 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+require('./helpers')(app);
+
 // Routes
 
-app.resource(routes.post);
+app.get('/', function(request, response) {
+  response.redirect('/posts');
+});
+
+app.resource('posts', routes.post);
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

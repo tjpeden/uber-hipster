@@ -7,6 +7,6 @@
     "express-resource": ">= 0.2.4",
     "jade": ">= 0.0.1",
     "mongoose": ">= 0.0.1",
-    "mongoose-auth": ">= 0.0.1"
+    "everyauth": ">= 0.0.1"
   }
 }

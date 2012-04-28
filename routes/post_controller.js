@@ -12,20 +12,19 @@ var Post = Mongoose.model('Post');
 module.exports = {
   index: function(req, res) {
     Post.ordered(function(error, posts) {
-      res.render('index', { posts: posts });
+      res.render('posts/index', { posts: posts });
     });
   },
   new: function(req, res) {
     var post = new Post();
-    res.render('new', { post: post });
+    res.render('posts/new', { post: post });
   },
   create: function(req, res) {
-    var post = new Post();
-    post.update(req.body.post);
-    res.redirect('home');
+    Post.create(req.body.post, function() {});
+    res.redirect('index');
   },
   show: function(req, res) {
-    Post.findById(req.params.id, function(error, post) {
+    Post.findById(req.params.post, function(error, post) {
       if(error) {
         console.log(req.url);
         console.log(error);
@@ -42,27 +41,28 @@ module.exports = {
     });
   },
   edit: function(req, res) {
-    Post.findById(req.params.id, function(error, post) {
+    Post.findById(req.params.post, function(error, post) {
       if(error) {
         console.log(error);
         res.redirect('home');
       } else {
-        res.render('edit', { post: post });
+        res.render('posts/edit', { post: post });
       }
     });
   },
   update: function(req, res) {
-    Post.findById(req.params.id, function(error, post) {
+    Post.findById(req.params.post, function(error, post) {
       if(error) {
         console.log(error);
       } else {
         post.update(req.body.post);
+        post.save();
       }
       res.redirect('home');
     });
   },
   destroy: function(req, res) {
-    Post.findById(req.params.id, function(error, post) {
+    Post.findById(req.params.post, function(error, post) {
       if(error) {
         console.log(error);
       } else {
@@ -71,7 +71,7 @@ module.exports = {
             console.log(error);
           }
           Post.ordered(function(error, posts) {
-            res.partial('_post', posts);
+            res.partial('posts/_post', posts);
           });
         });
       }

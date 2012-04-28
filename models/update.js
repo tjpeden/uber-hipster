@@ -5,6 +5,5 @@ module.exports = function addUpdate(schema, options) {
         this[prop] = obj[prop];
       }
     }
-    this.save();
   }
 }

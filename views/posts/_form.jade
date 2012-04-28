@@ -1,0 +1,14 @@
+form#addForm(action=pathFor(post), method='post')
+  input(type='hidden', name='_method', value=method)
+  label
+    | Title:
+    br
+    input(type='text', name='post[title]', style='width:300px;', value=post.title)
+  br
+  label
+    | Description:
+    br
+    textarea(rows='15', cols='63', name='post[description]')
+      =post.description
+  br
+  input.button(type='submit', value='Save')

@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  section
-    h2 New
-    != partial('_form', { action: '/', method: 'post', post: post })
-    br
-    a(href='/') Back

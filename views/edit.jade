@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  section
-    h2 Edit
-    != partial('_form', { action: '/' + post._id.toHexString(), method: 'put', post: post })
-    br
-    a(href='/') Back

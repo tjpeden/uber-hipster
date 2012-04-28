@@ -1,8 +1,8 @@
-extends layout
+extends ../layout
 
 block nav
   nav
-    a.button(href='/new') New
+    a.button(href='/posts/new') New
     h2 Select one
     ul#presets
       != partial('_post', posts);
