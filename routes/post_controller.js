@@ -26,7 +26,7 @@ module.exports = {
       if(error) {
         res.render('posts/new', { post: post });
       } else {
-        res.redirect('index');
+        res.redirect('/posts');
       }
     });
   },
@@ -51,7 +51,7 @@ module.exports = {
     Post.findById(req.params.post, function(error, post) {
       if(error) {
         console.log(error);
-        res.redirect('index');
+        res.redirect('/posts');
       } else {
         res.render('posts/edit', { post: post });
       }
@@ -65,7 +65,7 @@ module.exports = {
         post.update(req.body.post);
         post.save();
       }
-      res.redirect('index');
+      res.redirect('/posts');
     });
   },
   destroy: function(req, res) {
