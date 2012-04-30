@@ -1,12 +1,31 @@
 var Mongoose = require('mongoose'),
-    Schema = Mongoose.Schema
-    Auth = require('mongoose-auth');
+    Schema = Mongoose.Schema;
 
+var Model;
 var User = new Schema({
-  accessToken: String,
-  expires: Date,
-  refreshToken: String,
-  email: String
+  identifier: { type: String, index: true },
+  email: String,
+  name: String,
+  admin: { type: Boolean, default: false }
 });
 
-Mongoose.model('User', User);
+User.statics.findOrCreate = function(identifier, profile, callback) {
+  var self = this;
+  self.findOne({ identifier: identifier }, function(error, user) {
+    if(error) throw error;
+    if(user) {
+      callback(user);
+    } else {
+      var user = new Model();
+      user.identifier = identifier;
+      user.email = profile.emails[0].value;
+      user.name = profile.displayName;
+      user.save(function(error){
+        if(error) throw error;
+        callback(user);
+      });
+    }
+  });
+}
+
+Model = Mongoose.model('User', User);

@@ -3,14 +3,15 @@ var Mongoose = require('mongoose'),
     Schema = Mongoose.Schema;
 
 var Post = new Schema({
-  title: {type: String, unique: true},
+  _owner: { type: Schema.ObjectId, ref: 'User' },
+  title: { type: String, unique: true },
   description: String
 });
 
 Post.plugin(addUpdate);
 
-Post.statics.ordered = function(callback) {
-  return this.find().asc('title').run(callback);
-}
+Post.statics.ownedBy = function(user) {
+  return this.where('_owner', user._id).asc('title');
+};
 
 Mongoose.model('Post', Post);

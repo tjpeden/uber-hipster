@@ -11,7 +11,7 @@ var Post = Mongoose.model('Post');
 
 module.exports = {
   index: function(req, res) {
-    Post.ordered(function(error, posts) {
+    Post.ownedBy(req.user).run(function(error, posts) {
       res.render('posts/index', { posts: posts });
     });
   },
@@ -20,8 +20,15 @@ module.exports = {
     res.render('posts/new', { post: post });
   },
   create: function(req, res) {
-    Post.create(req.body.post, function() {});
-    res.redirect('index');
+    var post = new Post(req.body.post);
+    post._owner = req.user._id;
+    post.save(function(error) {
+      if(error) {
+        res.render('posts/new', { post: post });
+      } else {
+        res.redirect('index');
+      }
+    });
   },
   show: function(req, res) {
     Post.findById(req.params.post, function(error, post) {
@@ -44,7 +51,7 @@ module.exports = {
     Post.findById(req.params.post, function(error, post) {
       if(error) {
         console.log(error);
-        res.redirect('home');
+        res.redirect('index');
       } else {
         res.render('posts/edit', { post: post });
       }
@@ -58,7 +65,7 @@ module.exports = {
         post.update(req.body.post);
         post.save();
       }
-      res.redirect('home');
+      res.redirect('index');
     });
   },
   destroy: function(req, res) {
@@ -70,7 +77,7 @@ module.exports = {
           if(error) {
             console.log(error);
           }
-          Post.ordered(function(error, posts) {
+          Post.ownedBy(req.user).run(function(error, posts) {
             res.partial('posts/_post', posts);
           });
         });

@@ -1,18 +1,5 @@
-String.prototype.pluralize = function(count) {
-  var lastLetter, len;
-  if (count === 1) {
-    return this.toString();
-  }
-  len = this.length;
-  lastLetter = this.substr(len - 1);
-  if (lastLetter === 'y') {
-    return "" + (this.substr(0, len - 1)) + "ies";
-  } else if (lastLetter === 's') {
-    return this.toString();
-  } else {
-    return "" + this.toString() + "s";
-  }
-}
+var lingo = require('lingo'),
+    en = lingo.en;
 
 function base(address) {
   var result = 'http://';
@@ -35,7 +22,7 @@ function pathFor(obj, options) {
   var result = '/';
   options = options || {};
   
-  result += obj.constructor.modelName.toLowerCase().pluralize() + '/';
+  result += en.pluralize(obj.constructor.modelName.toLowerCase()) + '/';
   
   if(!obj.isNew) result += obj._id.toHexString();
   
