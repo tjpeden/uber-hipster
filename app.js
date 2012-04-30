@@ -5,13 +5,18 @@
 
 var Express = require('express'),
     Mongoose = require('mongoose'),
-    Passport = require('passport');
+    Passport = require('passport'),
+    routes = require('./router');
+
+console.log(routes);
 
 require('express-resource');
 require('./passport');
 
+/*
 var routes = {};
 routes.post = require('./routes/post_controller');
+*/
 
 var app = module.exports = Express.createServer();
 var pub = __dirname + '/public';

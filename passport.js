@@ -16,12 +16,22 @@ Passport.deserializeUser(function(id, done) {
   });
 });
 
-Passport.use(
-  new GoogleStrategy({
+var settings;
+
+if(process.env.NODE_ENV == 'production') {
+  settings = {
     returnURL: 'http://uber.tjcoding.com/auth/google/return',
     realm: 'http://uber.tjcoding.com'
-  },
-  function(identifier, profile, done) {
+  };
+} else {
+  settings = {
+    returnURL: 'http://localhost:3000/auth/google/return',
+    realm: 'http://localhost:3000'
+  };
+}
+
+Passport.use(
+  new GoogleStrategy(settings, function(identifier, profile, done) {
     User.findOrCreate(identifier, profile, function(user) {
       done(null, user);
     });
