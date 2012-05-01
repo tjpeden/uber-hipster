@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  section
+    h2 Hotswap Ticket
+    form(action='/swap', method='post')
+      select(name='swap[location]')
+        option DS OKCHP
+        option DS KCHP1
+        option DS KCHP2
+        option DS KC NP LOCAL
+        option DS BLO
+        option DS CAT
+        option DS LA HO LOCAL
+        option DS DAVIE LOCAL
+        option DS BREA/ORANGE LOCAL
+        option DS WESTLAKE LOCAL
+        option DS WILMINGTON LOCAL
+        option DS AGOURA LOCAL
+        option DS LMHP
+        option(value='other') OTHER
+      

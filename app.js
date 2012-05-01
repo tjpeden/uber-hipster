@@ -61,6 +61,10 @@ app.get('/logout', function(request, response) {
   response.redirect('/');
 });
 
+app.get('/swap', function(request, response) {
+  response.render('swap');
+});
+
 app.all('/posts*', function(request, response, next) {
   if(request.isAuthenticated()) {
     next();
