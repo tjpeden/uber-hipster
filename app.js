@@ -1,9 +1,9 @@
 var Express = require('express'),
     Mongoose = require('mongoose'),
     Passport = require('passport'),
-    routes = require('./router');
+    RedisStore = require('connect-redis')(Express),
+    resources = require('./router');
 
-require('express-resource');
 require('./passport');
 
 var app = module.exports = Express.createServer();
@@ -24,7 +24,7 @@ app.configure(function(){
   app.use(Express.bodyParser());
   app.use(Express.methodOverride());
   app.use(Express.cookieParser());
-  app.use(Express.session({ secret: 'mega-uber-hipster' }));
+  app.use(Express.session({ store: new RedisStore(require('./redis')), secret: 'mega-uber-hipster' }));
   app.use(Passport.initialize());
   app.use(Passport.session());
   app.use(Express.static(pub));
@@ -43,7 +43,11 @@ require('./helpers')(app);
 // Routes
 
 app.get('/', function(request, response) {
-  response.render('index');
+  if(!request.isAuthenticated()) {
+    response.render('index');
+  } else {
+    response.redirect('/posts');
+  }
 });
 
 app.get('/auth/google',
@@ -61,18 +65,8 @@ app.get('/logout', function(request, response) {
   response.redirect('/');
 });
 
-app.get('/swap', function(request, response) {
-  response.render('swap');
-});
-
-app.all('/posts*', function(request, response, next) {
-  if(request.isAuthenticated()) {
-    next();
-  } else {
-    response.redirect('home');
-  }
-});
-app.resource('posts', routes.post);
+// Setup resources
+resources(app);
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

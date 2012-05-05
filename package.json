@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "express": "2.5.8",
-    "express-resource": ">= 0.2.4",
     "jade": ">= 0.0.1",
     "lingo": ">= 0.0.1",
+    "connect-redis": ">= 0.0.1",
     "mongoose": ">= 0.0.1",
     "passport": ">= 0.0.1",
     "passport-google": ">= 0.0.1"
