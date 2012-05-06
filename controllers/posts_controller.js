@@ -28,7 +28,7 @@ module.exports = {
   },
   create: function(request, response) {
     var post = new Post(request.body.post);
-    post._owner = req.user._id;
+    post._owner = request.user._id;
     post.save(function(error) {
       if(error) {
         response.render('posts/new', { post: post });
