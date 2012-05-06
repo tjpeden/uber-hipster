@@ -1,18 +1,15 @@
 var Express = require('express'),
     Mongoose = require('mongoose'),
     Passport = require('passport'),
-    RedisStore = require('connect-redis')(Express),
-    resources = require('./router');
+    RedisStore = require('connect-redis')(Express);
 
+require('express-router');
 require('./passport');
 
 var app = module.exports = Express.createServer();
 var pub = __dirname + '/public';
 
-var dbURL = process.env.MONGODB;
-
-console.log(dbURL);
-Mongoose.connect(dbURL);
+Mongoose.connect(process.env.MONGODB);
 
 // Configuration
 
@@ -65,8 +62,13 @@ app.get('/logout', function(request, response) {
   response.redirect('/');
 });
 
+app.get('/resources', function(request, response) {
+  console.log(router.toString());
+  response.redirect('/');
+});
+
 // Setup resources
-resources(app);
+app.loadResources();
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
