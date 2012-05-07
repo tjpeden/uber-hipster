@@ -11,9 +11,13 @@ var User = new Schema({
 
 User.statics.findOrCreate = function(identifier, profile, callback) {
   var self = this;
-  self.findOne({ identifier: identifier }, function(error, user) {
+  self.findOne({ email: profile.emails[0].value }, function(error, user) {
     if(error) throw error;
     if(user) {
+      if(user.identifier != identifier) {
+        user.identifier = identifier;
+        user.save();
+      }
       callback(user);
     } else {
       var user = new Model();

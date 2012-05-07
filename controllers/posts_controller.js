@@ -22,21 +22,6 @@ module.exports = {
       response.render('posts/index', { posts: posts });
     });
   },
-  new: function(request, response) {
-    var post = new Post();
-    response.render('posts/new', { post: post });
-  },
-  create: function(request, response) {
-    var post = new Post(request.body.post);
-    post._owner = request.user._id;
-    post.save(function(error) {
-      if(error) {
-        response.render('posts/new', { post: post });
-      } else {
-        response.redirect('/posts');
-      }
-    });
-  },
   show: function(request, response) {
     Post.findById(request.params.post, function(error, post) {
       if(error) {
@@ -51,6 +36,21 @@ module.exports = {
           response.send(406); // Perhaps I shall implement this later
           break;
         }
+      }
+    });
+  },
+  new: function(request, response) {
+    var post = new Post();
+    response.render('posts/new', { post: post });
+  },
+  create: function(request, response) {
+    var post = new Post(request.body.post);
+    post._owner = request.user._id;
+    post.save(function(error) {
+      if(error) {
+        response.render('posts/new', { post: post });
+      } else {
+        response.redirect('/posts');
       }
     });
   },

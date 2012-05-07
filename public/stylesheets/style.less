@@ -1,6 +1,7 @@
 @import 'bootstrap';
+@import '/stylesheets/scrollbars.css';
 
-@light-green: #C6E7EC;
+@light-blue: #BCDAE9;
 @dark-blue: #043042;
 @darker: rgba(0, 0, 0, 0.0975);
 
@@ -13,7 +14,7 @@
 }
 
 body {
-  background: @light-green;
+  background: @light-blue;
   color: @dark-blue;
   font: 16px Helvetica, Arial, sans-serif;
   line-height: 1.6em;
@@ -53,7 +54,7 @@ nav {
   max-width: 285px;
   overflow: hidden;
   .border-radius(5px);
-  
+    
   h2 {
     text-align: center;
     
@@ -65,7 +66,7 @@ nav {
   
   &:hover {
     height: auto;
-    overflow: visible;
+    overflow-y: scroll;
     
     h2:after {
       -webkit-transition: all 2s ease-in-out;
@@ -86,11 +87,25 @@ nav {
     list-style: none;
     padding-left: 30px;
     
-    li a {
-      margin-right: 10px;
+    li {
+      min-height: 50px;
       
-      img {
-        vertical-align: text-bottom;
+      p {
+        display: none;
+      }
+      
+      &:hover p {
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      
+      a {
+        margin-right: 10px;
+        
+        img {
+          vertical-align: text-bottom;
+        }
       }
     }
   }
@@ -139,12 +154,16 @@ textarea {
 }
 
 .powered {
+  height: 0;
   width: 50%;
   margin: 5px auto;
-  opacity: 0.25;
   text-align: center;
+  border-top: 1px solid @dark-blue;
+  overflow: hidden;
   
   &:hover {
+    border: none;
+    height: auto;
     opacity: 1.0;
   }
 }
