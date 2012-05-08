@@ -62,7 +62,7 @@
       }
     });
     
-    $("#presets li a:first-child")
+    $("#presets li a.delete")
         .live('ajax:success', function(event, data, status, xhr) {
           $('#presets').html(data);
         })
@@ -70,7 +70,7 @@
           console.log(error);
         });
       
-    $("#presets li a:last-child")
+    $("#presets li a.show")
       .live('ajax:success', function(event, data, status, xhr) {
         $('#description').html(data.description);
       })
