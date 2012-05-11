@@ -5,7 +5,7 @@
 
 var Mongoose = require('mongoose');
 
-require('../models/post');
+require('../../models/post');
 
 var Post = Mongoose.model('Post');
 

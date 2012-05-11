@@ -1,9 +1,9 @@
 var Express = require('express'),
     Mongoose = require('mongoose'),
     Passport = require('passport'),
-    RedisStore = require('connect-redis')(Express);
+    RedisStore = require('connect-redis')(Express),
+    Resource = require('express-resource-new');
 
-require('express-router');
 require('./passport');
 
 var app = module.exports = Express.createServer();
@@ -17,11 +17,15 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set('view options', { layout: false });
+  app.set('controllers', __dirname + '/controllers');
   app.use(Express.favicon(pub + '/favicon.ico'));
   app.use(Express.bodyParser());
   app.use(Express.methodOverride());
   app.use(Express.cookieParser());
-  app.use(Express.session({ store: new RedisStore(require('./redis')), secret: 'mega-uber-hipster' }));
+  app.use(Express.session({
+    store: new RedisStore(require('./redis')),
+    secret: 'mega-uber-hipster'
+  }));
   app.use(Passport.initialize());
   app.use(Passport.session());
   app.use(Express.static(pub));
@@ -68,7 +72,7 @@ app.get('/resources', function(request, response) {
 });
 
 // Setup resources
-app.loadResources();
+app.resource('posts');
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
