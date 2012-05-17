@@ -33,7 +33,7 @@ module.exports = {
           response.send(post);
           break;
         default:
-          response.send(406); // Perhaps I shall implement this later
+          response.send(415); // Perhaps I shall implement this later
           break;
         }
       }
