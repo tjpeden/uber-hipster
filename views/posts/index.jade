@@ -1,15 +1,18 @@
 extends ../layout
 
-block nav
-  nav
-    header
-      a.button(href='/posts/new') New
-      h2 Select one
-    ul#presets
-      != partial('_post', posts);
 block content
-  section
-    h2 Preview
-    button#copy-button Copy
-    textarea#description(disabled)
-    a(href='/logout') Logout
+  .row-fluid.show-grid
+    .well.span3
+      p
+        a.btn.btn-primary(href='/posts/new')
+          i.icon-plus
+          | Add a Note
+      ul.nav.nav-list
+        li.nav-header Notes
+        if posts
+          != partial('_post', posts);
+    .hero-unit.span9
+      h2 Preview
+      p
+        button.btn.btn-primary.btn-large#copyText Copy
+      textarea.uneditable-textarea.span10#description(rows='16', readonly)

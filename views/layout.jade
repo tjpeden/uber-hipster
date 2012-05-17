@@ -11,29 +11,38 @@ html.no-js(lang='en')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-    title uber
+    title Bits n Bytes
     meta(name='description', content='')
+    meta(name='author', content='')
     meta(name='viewport', content='width=device-width')
-    link(rel='stylesheet/less', href='/stylesheets/style.less')
-    script(src='/javascripts/libs/less-1.3.0.min.js')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.min.css')
+    // link(rel='stylesheet/less', href='/stylesheets/style.less')
+    // script(src='/javascripts/libs/less-1.3.0.min.js')
     script(src='/javascripts/libs/modernizr-2.5.3.min.js')
   body
-    div#msg
-      p
-    header
-      h1 uber
-      block nav
-    article(role='main')
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.i-bar
+              i.icon-chevron-down.icon-white
+          a.brand(href='/') Bits n Bytes
+          .nav-collapse
+            ul.nav
+              li
+                a(href='/') Home
+              li
+                a(href='/posts') Notes
+            ul.nav.pull-right
+              li
+                a(href='/logout') Logout
+    .container
       block content
-    footer
-      p By: TJ Peden
-      section.powered
-        p.reflect
-          img(src='/images/PoweredMongoDBbrown50.png')
-      section.powered
-        p: img(src='/images/node_logo.png')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
     script
       window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js"><\\/script>')
+    script(src='/javascripts/libs/bootstrap.min.js')
     script(src='/javascripts/plugins.js')
     script(src='/javascripts/script.js')

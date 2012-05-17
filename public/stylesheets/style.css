@@ -1,0 +1,11 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  background: url('/images/whitey.png');
+}
+
+.welcome {
+  text-align: center;
+  box-shadow: 0px 0px 3px #bababa;
+  border: 1px solid #EDEDED;
+}

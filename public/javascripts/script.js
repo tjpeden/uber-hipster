@@ -78,14 +78,25 @@
         console.log(error);
       });
     
-    $("#copy-button").zclip({
-      path: '/javascripts/ZeroClipboard.swf',
-      copy: function() {
-        return $("#description").html();
-      },
-      afterCopy: function() {
-        $("#description").html('');
-      }
-    });
+    $('#copyText').click(function(event) {
+      // http://code.google.com/chrome/extensions/manifest.html#permissions
+      var node = document.createElement('div');
+      var selection = window.getSelection();
+      var range = document.createRange();
+      document.designMode = "On";
+      
+      $(node).html( $('textarea').text() ).appendTo(document.body);
+      
+      range.setStart(node, 0);
+      range.setEnd(node, 1);
+      
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy', false, null);
+      
+      selection.removeAllRanges();
+      $(node).remove();
+      document.designMode = "Off";
+	  });
   });
 })();
