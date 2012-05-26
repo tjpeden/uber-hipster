@@ -1,8 +1,8 @@
 extends ../layout
 
 block content
-  section
-    h2 Edit
-    != partial('_form', { method: 'put', post: post })
-    br
-    a(href='/posts') Back
+  .hero-unit
+    h2 Edit Note
+  .row
+    .span12
+      != partial('_form', { method: 'put', post: post })

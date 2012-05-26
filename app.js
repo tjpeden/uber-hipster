@@ -66,6 +66,10 @@ app.get('/logout', function(request, response) {
   response.redirect('/');
 });
 
+app.get('/install', function(request, response) {
+  response.render('install');
+});
+
 app.get('/resources', function(request, response) {
   console.log(router.toString());
   response.redirect('/');

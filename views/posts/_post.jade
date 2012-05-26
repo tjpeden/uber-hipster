@@ -1,8 +1,8 @@
 li(data-id=post._id.toHexString())
   a.show(href=pathFor(post, { format: 'json' }), data-remote)
     | #{post.title}
-  p
-    a.star.btn.btn-mini
+  p.btn-group
+    a.star.btn.btn-mini(href=pathFor(post, { action: 'update' }, data-remote, data-method='put', data-type='html')
       i.icon-star-empty
     a.edit.btn.btn-mini(href=pathFor(post, { action: 'edit' }))
       i.icon-edit

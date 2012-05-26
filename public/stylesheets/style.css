@@ -1,7 +1,7 @@
 body {
   padding-top: 60px;
   padding-bottom: 40px;
-  background: url('/images/whitey.png');
+  background: url('/images/polaroid.png');
 }
 
 .welcome {
@@ -11,5 +11,27 @@ body {
 }
 
 ul.nav.nav-list {
-  max-height: 100%;
+  max-height: 550px;
+  overflow-y: scroll;
+  
+}
+
+.hero-unit {
+  background-color: rgba(200, 200, 200, .5);
+  box-shadow: 0px 0px 3px #BABABA;
+  border: 1px solid #EDEDED;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #05C;
+  border-radius: 5px;
 }

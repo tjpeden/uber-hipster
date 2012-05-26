@@ -1,37 +1,3 @@
-/* Author: TJ Peden */
-
-/*
-(function($) {
-  function Workflow(options) {
-    this.selected = null;
-    this.options = options;
-    
-    this.select(options.start)
-  }
-  
-  var methods = {
-    select: function(id) {
-      this.id = id;
-      this.selected = $('#' + id);
-      return this;
-    },
-    watch: function() {
-      var self = this;
-      this.selected.find(':input').change(function(event) {
-        var result = false;
-        self.selected.find(':input').each(function(index, element){
-          result = result & (self.options[self.id][$(this).attr('id')])
-        });
-      });
-      return self;
-    },
-    
-  }
-  
-  $.extend(Workflow.prototype, methods);
-})(jQuery);
-*/
-
 (function() {
   jQuery(function($) {
     $('header h1').click(function() {
@@ -62,15 +28,15 @@
       }
     });
     
-    $("#presets li a.delete")
+    $("#notes li a.delete")
         .live('ajax:success', function(event, data, status, xhr) {
-          $('#presets').html(data);
+          $('#notes').html(data);
         })
         .live('ajax:error', function(event, error, status, xhr) {
           console.log(error);
         });
       
-    $("#presets li a.show")
+    $("#notes li a.show")
       .live('ajax:success', function(event, data, status, xhr) {
         $('#description').html(data.description);
       })

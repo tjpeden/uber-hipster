@@ -1,14 +1,17 @@
-form#addForm(action=pathFor(post), method='post')
+form#addForm.form-horizontal(action=pathFor(post), method='post')
   input(type='hidden', name='_method', value=method)
-  label
-    | Title:
-    br
-    input(type='text', name='post[title]', style='width:300px;', value=post.title)
-  br
-  label
-    | Description:
-    br
-    textarea(rows='15', cols='63', name='post[description]')
-      =post.description
-  br
-  input.button(type='submit', value='Save')
+  fieldset
+    .control-group
+      label.control-label(for='post-title') Title
+      .controls
+        input#post-title.span5(type='text', name='post[title]', value=post.title)
+        p.help-block Title should be unique.
+    .control-group
+      label.control-label(for='post-description') Description
+      .controls
+        textarea#post-description.input-xlarge.span8(rows='16', name='post[description]')
+          =post.description
+    .form-actions
+      input.btn.btn-primary(type='submit', value='Save')
+      | 
+      a.btn(href='/posts') Cancel

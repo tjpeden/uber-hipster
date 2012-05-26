@@ -7,12 +7,13 @@ block content
         a.btn.btn-primary(href='/posts/new')
           i.icon-plus
           | Add a Note
-      ul.nav.nav-list
+      ul#notes.nav.nav-list
         li.nav-header Notes
         if posts
           != partial('_post', posts);
-    .hero-unit.span9
-      h2 Preview
+    .span9
+      .hero-unit
+        h2 Preview
       p
         button.btn.btn-primary.btn-large#copyText Copy
       textarea.uneditable-textarea.span10#description(rows='16', readonly)
