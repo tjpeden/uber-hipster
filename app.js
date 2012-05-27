@@ -12,6 +12,9 @@ var pub = __dirname + '/public';
 Mongoose.connect(process.env.MONGODB);
 
 // Configuration
+var sessionOptions = { secret: 'mega-uber-hipster' }
+if(app.settings.env == 'production')
+  sessionOptions.store = new RedisStore(require('./redis'));
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -22,10 +25,7 @@ app.configure(function(){
   app.use(Express.bodyParser());
   app.use(Express.methodOverride());
   app.use(Express.cookieParser());
-  app.use(Express.session({
-    store: new RedisStore(require('./redis')),
-    secret: 'mega-uber-hipster'
-  }));
+  app.use(Express.session(sessionOptions));
   app.use(Passport.initialize());
   app.use(Passport.session());
   app.use(Express.static(pub));
@@ -71,8 +71,11 @@ app.get('/install', function(request, response) {
 });
 
 app.get('/resources', function(request, response) {
-  console.log(router.toString());
-  response.redirect('/');
+  response.send("<pre>"+JSON.stringify(app.resources, function(key, value) {
+    if(value == app)
+      return '[Circular Reference]';
+    return value;
+  }, "  ")+"</pre>");
 });
 
 // Setup resources
