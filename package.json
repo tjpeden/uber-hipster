@@ -9,6 +9,7 @@
     "lingo": "*",
     "connect-redis": "*",
     "mongoose": "*",
-    "passport": "*"
+    "passport": "*",
+    "passport-google": "*"
   }
 }
