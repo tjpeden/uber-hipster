@@ -67,6 +67,7 @@
       selection.removeAllRanges();
       $(node).remove();
       document.designMode = "Off";
+      $('textarea').html('');
 	  });
   });
 })();
