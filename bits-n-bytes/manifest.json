@@ -4,10 +4,10 @@
   "version": "1",
   "app": {
     "urls": [
-      "http://localhost:3000/"
+      "http://uber.tjcoding.com/"
     ],
     "launch": {
-      "web_url": "http://localhost:3000/"
+      "web_url": "http://uber.tjcoding.com/"
     }
   },
   "icons": {
