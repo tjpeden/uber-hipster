@@ -50,7 +50,7 @@
     
     $('#copyText').click(function(event) {
       // http://code.google.com/chrome/extensions/manifest.html#permissions
-      var node = document.createElement('div');
+      var node = document.createElement('pre');
       var selection = window.getSelection();
       var range = document.createRange();
       document.designMode = "On";
