@@ -41,7 +41,7 @@ module.exports = {
   },
   new: function(request, response) {
     var post = new Post();
-    response.render('posts/new', { post: post });
+    response.render('posts/new', { post: post, method: 'post' });
   },
   create: function(request, response) {
     var post = new Post(request.body.post);
@@ -60,7 +60,7 @@ module.exports = {
         console.log(error);
         response.redirect('/posts');
       } else {
-        response.render('posts/edit', { post: post });
+        response.render('posts/edit', { post: post, method: 'put' });
       }
     });
   },
