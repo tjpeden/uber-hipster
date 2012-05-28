@@ -75,6 +75,20 @@ module.exports = {
       response.redirect('/posts');
     });
   },
+  toggle: function(request, response) {
+    Post.findById(request.params.post, function(error, post) {
+      if(error) {
+      
+      } else {
+        post.star = !post.star;
+        post.save(function(error) {
+          Post.ownedBy(request.user).run(function(error, posts) {
+            response.partial('posts/_post', posts);
+          });
+        });
+      }
+    });
+  },
   destroy: function(request, response) {
     Post.findById(request.params.post, function(error, post) {
       if(error) {

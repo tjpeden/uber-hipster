@@ -1,10 +1,6 @@
 (function() {
   jQuery(function($) {
-    $('header h1').click(function() {
-      window.location.reload();
-    });
-    
-    $('a[data-remote]').click(function(e) {
+    $('a[data-remote]').live('click', function(e) {
       e.preventDefault();
       var element = $(this);
       var url = element.attr('href');
@@ -28,21 +24,29 @@
       }
     });
     
-    $("#notes li a.delete")
-        .live('ajax:success', function(event, data, status, xhr) {
-          $('#notes').html(data);
-        })
-        .live('ajax:error', function(event, error, status, xhr) {
-          console.log(error);
-        });
+    $("a.delete")
+    .live('ajax:success', function(event, data, status, xhr) {
+      $('#notes').html(data);
+    })
+    .live('ajax:error', function(event, error, status, xhr) {
+      console.log(error);
+    });
+    
+    $("a.star")
+    .live('ajax:success', function(event, data, status, xhr) {
+      $('#notes').html(data);
+    })
+    .live('ajax:error', function(event, error, status, xhr) {
+      console.log(error);
+    });
       
-    $("#notes li a.show")
-      .live('ajax:success', function(event, data, status, xhr) {
-        $('#description').html(data.description);
-      })
-      .live('ajax:error', function(event, error, status, xhr) {
-        console.log(error);
-      });
+    $("a.show")
+    .live('ajax:success', function(event, data, status, xhr) {
+      $('#description').html(data.description);
+    })
+    .live('ajax:error', function(event, error, status, xhr) {
+      console.log(error);
+    });
     
     $('#copyText').click(function(event) {
       // http://code.google.com/chrome/extensions/manifest.html#permissions
