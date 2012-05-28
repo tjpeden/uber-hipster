@@ -22,6 +22,11 @@ ul.nav.nav-list {
   border: 1px solid #EDEDED;
 }
 
+hr {
+  border-color: #CCC;
+  box-shadow: -1px 0 1px rgba(82, 168, 236, 0.6);
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }

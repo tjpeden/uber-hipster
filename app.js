@@ -1,9 +1,10 @@
 var express = require('express'),
     mongoose = require('mongoose'),
-    authom = require('authom'),
     passport = require('passport'),
     RedisStore = require('connect-redis')(express),
     Resource = require('express-resource-new');
+
+require('./lib/passport');
 
 var app = module.exports = express.createServer();
 var pub = __dirname + '/public';
@@ -38,7 +39,7 @@ app.configure('production', function(){
 
 mongoose.connect(process.env.MONGODB);
 
-require('./helpers')(app);
+require('./lib/helpers')(app);
 
 // Routes
 

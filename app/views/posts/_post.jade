@@ -7,9 +7,9 @@ li(data-id=post._id.toHexString())
         i.icon-star
       else
         i.icon-star-empty
-    a.edit.btn.btn-mini(href=/posts/' + post._id + '/edit')
+    a.edit.btn.btn-mini(href='/posts/' + post._id + '/edit')
       i.icon-edit
       | edit
-    a.delete.btn.btn-mini(href=/posts/' + post._id, data-remote, data-confirm="Are you sure?", data-method='delete', data-type='html')
+    a.delete.btn.btn-mini(href='/posts/' + post._id, data-remote, data-confirm="Are you sure?", data-method='delete', data-type='html')
       i.icon-trash
       | delete

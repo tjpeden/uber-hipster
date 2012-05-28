@@ -24,7 +24,7 @@
       }
     });
     
-    $("a.delete")
+    $("#notes a.delete")
     .live('ajax:success', function(event, data, status, xhr) {
       $('#notes').html(data);
     })
@@ -32,7 +32,7 @@
       console.log(error);
     });
     
-    $("a.star")
+    $("#notes a.star")
     .live('ajax:success', function(event, data, status, xhr) {
       $('#notes').html(data);
     })
@@ -40,7 +40,7 @@
       console.log(error);
     });
       
-    $("a.show")
+    $("#notes a.show")
     .live('ajax:success', function(event, data, status, xhr) {
       $('#description').html(data.description);
     })

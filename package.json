@@ -9,6 +9,6 @@
     "lingo": "*",
     "connect-redis": "*",
     "mongoose": "*",
-    "authom": "*"
+    "passport": "*"
   }
 }
