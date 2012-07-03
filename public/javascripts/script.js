@@ -48,6 +48,10 @@
       console.log(error);
     });
 
+    $('#clearText').click(function(event) {
+      $('textarea').text('');
+    });
+
     $('#copyText').click(function(event) {
       // http://code.google.com/chrome/extensions/manifest.html#permissions
       var node = document.createElement('pre');
