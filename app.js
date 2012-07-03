@@ -10,7 +10,7 @@ var app = module.exports = express.createServer();
 var pub = __dirname + '/public';
 
 // Configuration
-var sessionOptions = { secret: 'mega-uber-hipster' }
+var sessionOptions = { secret: 'mega-uber-hipster' };
 if(app.settings.env == 'production')
   sessionOptions.store = new RedisStore(require('./lib/redis'));
 
