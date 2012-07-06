@@ -9,7 +9,7 @@ form#addForm.form-horizontal(action=pathFor(post), method='post')
     .control-group
       label.control-label(for='post-star') Star
       .controls
-        input#post-star(type='checkbox', name='post[star]', value=post.star)
+        input#post-star(type='checkbox', name='post[star]', checked=post.star)
     .control-group
       label.control-label(for='post-description') Description
       .controls
