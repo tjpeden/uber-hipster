@@ -49,7 +49,7 @@
     });
 
     $('#clearText').click(function(event) {
-      $('textarea').text('');
+      $('textarea').html('');
     });
 
     $('#copyText').click(function(event) {
