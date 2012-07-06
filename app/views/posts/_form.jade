@@ -7,6 +7,10 @@ form#addForm.form-horizontal(action=pathFor(post), method='post')
         input#post-title.span5(type='text', name='post[title]', value=post.title)
         p.help-block Title should be unique.
     .control-group
+      label.control-label(for='post-star') Star
+      .controls
+        input#post-star(type='checkbox', name='post[star]', value=post.star)
+    .control-group
       label.control-label(for='post-description') Description
       .controls
         textarea#post-description.input-xlarge.span8(rows='16', name='post[description]')
