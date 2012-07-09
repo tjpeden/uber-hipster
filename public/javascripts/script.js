@@ -52,7 +52,7 @@
       $('textarea').html('');
     });
     
-    $('#express-resource-new').hubinfo({
+    $('#express-resource-new').hubInfo({
       user: 'tpeden',
       repo: 'express-resource-new'
     });
