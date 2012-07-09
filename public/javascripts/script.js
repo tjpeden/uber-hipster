@@ -51,6 +51,11 @@
     $('#clearText').click(function(event) {
       $('textarea').html('');
     });
+    
+    $('#express-resource-new').hubinfo({
+      user: 'tpeden',
+      repo: 'express-resource-new'
+    });
 
     $('#copyText').click(function(event) {
       // http://code.google.com/chrome/extensions/manifest.html#permissions
